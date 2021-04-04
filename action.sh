@@ -26,6 +26,27 @@ merge() {
     git fetch origin FBK
     git merge origin/FBK --no-edit
     git push
+    tg_cast "<b>$DRONE_BUILD_NUMBER CI Build Triggered</b>"
+}
+
+# Telegram
+CHATID="-1001362559368" # Group/channel chatid (use rose/userbot to get it)
+TELEGRAM_TOKEN="${TG_TOKEN}"
+
+# Export Telegram.sh
+TELEGRAM_FOLDER="${HOME}"/telegram
+if ! [ -d "${TELEGRAM_FOLDER}" ]; then
+    git clone https://github.com/fabianonline/telegram.sh/ "${TELEGRAM_FOLDER}"
+fi
+
+TELEGRAM="${TELEGRAM_FOLDER}"/telegram
+tg_cast() {
+    "${TELEGRAM}" -t "${TELEGRAM_TOKEN}" -c "${CHATID}" -H \
+    "$(
+		for POST in "${@}"; do
+			echo "${POST}"
+		done
+    )"
 }
 
 merge
