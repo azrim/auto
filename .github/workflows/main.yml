@@ -1,0 +1,16 @@
+name: Trigger build
+on:
+  schedule:
+  - cron: '0 17 * * 0'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: execute
+      run: |
+        chmod a+x action.sh
+        ./action.sh
+      env:
+        SSHKEY: ${{ secrets.SSHKEY }}
