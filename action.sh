@@ -27,7 +27,7 @@ merge() {
     git fetch origin FBK
     git merge origin/FBK --no-edit
     git push
-    tg_cast "<b>$DRONE_BUILD_NUMBER CI Build Triggered</b>"
+    tg_cast "<b>Triggering Weekly Build</b> @Hiitagiii"
 }
 
 # Telegram
