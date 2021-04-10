@@ -13,6 +13,7 @@ setup() {
     ssh-add $SSHSTORE/key
     git config --global user.mail "mirzaspc@gmail.com"
     git config --global user.name "Hiitagiii"
+    git config --global merge.log 3000
 }
 
 setup_github() {
